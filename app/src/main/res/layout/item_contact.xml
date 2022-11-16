@@ -9,7 +9,7 @@
     android:layout_marginEnd="@dimen/margin_large"
     android:background="@drawable/selector_contact_background">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView_photo"
         android:layout_width="@dimen/contacts_size_photo"
         android:layout_height="@dimen/contacts_size_photo"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_name_my_contacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toEndOf="@+id/imageView_photo"
         app:layout_constraintTop_toTopOf="@+id/imageView_photo" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_career_my_contacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView_photo"
         app:layout_constraintStart_toEndOf="@+id/imageView_photo" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/button_basket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

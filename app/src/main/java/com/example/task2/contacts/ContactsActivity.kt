@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.task2.R
 import com.example.task2.contacts.list.ContactActionListener
 import com.example.task2.databinding.ActivityMainBinding
 import com.example.task2.storage.models.*
@@ -51,12 +52,12 @@ class ContactsActivity : AppCompatActivity(), ContactActionListener {
 
     private fun showRemoveContactConfirmation(contact: Contact) {
         var isCancelled = false
-        Snackbar.make(binding.coordinator, "Remove contact?", Snackbar.LENGTH_SHORT)
+        Snackbar.make(binding.coordinator, getString(R.string.Remove_contact), Snackbar.LENGTH_SHORT)
             .apply {
-                setAction("Cancel") {
+                setAction(getString(R.string.cancel)) {
                     isCancelled = true
                     viewModel.undoRemoveContact()
-                    showToast("Cancelled")
+                    showToast(getString(R.string.cancelled))
                     dismiss()
                 }
             }

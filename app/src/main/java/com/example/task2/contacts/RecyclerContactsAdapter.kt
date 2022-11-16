@@ -1,16 +1,15 @@
-package com.example.task2.storage.models
+package com.example.task2.contacts
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.task2.R
-import com.example.task2.contacts.Contact
 import com.example.task2.contacts.list.ContactActionListener
 import com.example.task2.databinding.ItemContactBinding
+import com.example.task2.extension.loadPicture
+
 
 class RecyclerContactsAdapter(
     private val actionListener: ContactActionListener,
@@ -18,7 +17,7 @@ class RecyclerContactsAdapter(
 
     private val differCallback = object : DiffUtil.ItemCallback<Contact>() {
         override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-            return oldItem.id == newItem.id
+            return ((oldItem.id == newItem.id) && oldItem.name == newItem.name)
         }
 
         override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
@@ -62,19 +61,11 @@ class RecyclerContactsAdapter(
             }
 
             if (contact.photoUri.isNotBlank()) {
+
                 imageViewPhoto.loadPicture(contact.photoUri)
             } else {
                 imageViewPhoto.setImageResource(R.drawable.ic_user_avatar)
             }
-        }
-
-        private fun ImageView.loadPicture(image: String) {
-            Glide.with(context)
-                .load(image)
-                .circleCrop()
-                .placeholder(R.drawable.ic_user_avatar)
-                .error(R.drawable.ic_user_avatar)
-                .into(this)
         }
     }
 

@@ -13,11 +13,11 @@ class SimpleDialogFragment : DialogFragment() {
 
 
     companion object {
-        val TAG = SimpleDialogFragment::class.java.simpleName
+        val TAG: String = SimpleDialogFragment::class.java.simpleName
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AddContactBinding.inflate(inflater, container, false)
 
         return binding.root

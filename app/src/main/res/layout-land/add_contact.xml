@@ -80,7 +80,7 @@
     <ScrollView
         android:id="@+id/scroll_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/contacts_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +110,6 @@
                 android:textSize="@dimen/text_size_medium"
                 app:layout_constraintBottom_toTopOf="@+id/textCareer"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 app:layout_constraintStart_toStartOf="@id/constraintAddOneContactEnd" />
 
             <androidx.appcompat.widget.AppCompatEditText
