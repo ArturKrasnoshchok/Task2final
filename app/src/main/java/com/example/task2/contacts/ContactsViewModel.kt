@@ -11,17 +11,17 @@ class ContactsViewModel(
     private val mapper: UserToContactMapper,
 ) : ViewModel() {
 
-    private val _showRemoveContactConfirmation = MutableLiveData<ContactInfo?>()
-    val removeContactBanner: LiveData<ContactInfo?> = _showRemoveContactConfirmation
+    private val _showRemoveContactConfirmation = MutableLiveData<Contact?>()
+    val removeContactBanner: LiveData<Contact?> = _showRemoveContactConfirmation
 
-    private val _contacts = MutableLiveData<List<ContactInfo>>()
-    val contacts: LiveData<List<ContactInfo>> = _contacts
+    private val _contacts = MutableLiveData<List<Contact>>()
+    val contacts: LiveData<List<Contact>> = _contacts
 
     init {
         loadContacts()
     }
 
-    fun selectContact(contact: ContactInfo) {
+    fun selectContact(contact: Contact) {
         _contacts.value = _contacts.value?.map {
             if (it.id == contact.id) {
                 it.copy(isSelected = !it.isSelected)
@@ -36,7 +36,7 @@ class ContactsViewModel(
         loadContacts()
     }
 
-    fun askToRemoveContact(contact: ContactInfo) {
+    fun askToRemoveContact(contact: Contact) {
         _showRemoveContactConfirmation.value = contact
         _contacts.value = _contacts.value?.toMutableList()?.apply { remove(contact) }
     }
@@ -46,7 +46,7 @@ class ContactsViewModel(
         loadContacts()
     }
 
-    fun removeContact(contact: ContactInfo) {
+    fun removeContact(contact: Contact) {
         userDataBase.deleteUser(contact.id)
     }
 

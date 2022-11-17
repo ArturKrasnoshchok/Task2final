@@ -50,7 +50,7 @@ class ContactsActivity : AppCompatActivity(), ContactActionListener {
         }
     }
 
-    private fun showRemoveContactConfirmation(contact: ContactInfo) {
+    private fun showRemoveContactConfirmation(contact: Contact) {
         var isCancelled = false
         Snackbar.make(binding.coordinator, getString(R.string.Remove_contact), Snackbar.LENGTH_SHORT)
             .apply {
@@ -81,11 +81,11 @@ class ContactsActivity : AppCompatActivity(), ContactActionListener {
         viewModel.addContact(user)
     }
 
-    override fun onDeleteContact(contact: ContactInfo) {
+    override fun onDeleteContact(contact: Contact) {
         viewModel.askToRemoveContact(contact)
     }
 
-    override fun onSelectContact(contact: ContactInfo) {
+    override fun onSelectContact(contact: Contact) {
         viewModel.selectContact(contact)
     }
 
