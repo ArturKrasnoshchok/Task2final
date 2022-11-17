@@ -4,8 +4,8 @@ import com.example.task2.storage.models.UserEntity
 
 class UserToContactMapper {
 
-    fun map(user: UserEntity): Contact = with(user) {
-        return Contact(
+    fun map(user: UserEntity): ContactInfo = with(user) {
+        return ContactInfo(
             id = id,
             name = name,
             photoUri = photo,
@@ -17,7 +17,7 @@ class UserToContactMapper {
         )
     }
 
-    fun mapList(users: List<UserEntity>): List<Contact> {
+    fun mapList(users: List<UserEntity>): List<ContactInfo> {
         return users.map { userEntity -> map(userEntity) }
     }
 }

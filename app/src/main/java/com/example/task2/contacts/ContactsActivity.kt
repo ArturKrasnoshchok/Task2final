@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.task2.R
 import com.example.task2.contacts.list.ContactActionListener
 import com.example.task2.databinding.ActivityMainBinding
-import com.example.task2.storage.models.*
+import com.example.task2.storage.models.UserEntity
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
@@ -50,7 +50,7 @@ class ContactsActivity : AppCompatActivity(), ContactActionListener {
         }
     }
 
-    private fun showRemoveContactConfirmation(contact: Contact) {
+    private fun showRemoveContactConfirmation(contact: ContactInfo) {
         var isCancelled = false
         Snackbar.make(binding.coordinator, getString(R.string.Remove_contact), Snackbar.LENGTH_SHORT)
             .apply {
@@ -81,11 +81,11 @@ class ContactsActivity : AppCompatActivity(), ContactActionListener {
         viewModel.addContact(user)
     }
 
-    override fun onDeleteContact(contact: Contact) {
+    override fun onDeleteContact(contact: ContactInfo) {
         viewModel.askToRemoveContact(contact)
     }
 
-    override fun onSelectContact(contact: Contact) {
+    override fun onSelectContact(contact: ContactInfo) {
         viewModel.selectContact(contact)
     }
 

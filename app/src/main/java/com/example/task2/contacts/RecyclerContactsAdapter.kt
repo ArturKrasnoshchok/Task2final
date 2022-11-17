@@ -15,12 +15,12 @@ class RecyclerContactsAdapter(
     private val actionListener: ContactActionListener,
 ) : RecyclerView.Adapter<RecyclerContactsAdapter.RecyclerContactsHolder>() {
 
-    private val differCallback = object : DiffUtil.ItemCallback<Contact>() {
-        override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<ContactInfo>() {
+        override fun areItemsTheSame(oldItem: ContactInfo, newItem: ContactInfo): Boolean {
             return ((oldItem.id == newItem.id) && oldItem.name == newItem.name)
         }
 
-        override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+        override fun areContentsTheSame(oldItem: ContactInfo, newItem: ContactInfo): Boolean {
             return oldItem == newItem
         }
     }
@@ -47,7 +47,7 @@ class RecyclerContactsAdapter(
         private val binding: ItemContactBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(contact: Contact) = with(binding) {
+        fun bind(contact: ContactInfo) = with(binding) {
             root.isSelected = contact.isSelected
 
             tvNameMyContacts.text = contact.name

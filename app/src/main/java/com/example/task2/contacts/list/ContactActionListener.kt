@@ -1,10 +1,10 @@
 package com.example.task2.contacts.list
 
-import com.example.task2.contacts.Contact
+import com.example.task2.contacts.ContactInfo
 
 interface ContactActionListener {
 
-    fun onDeleteContact(contact: Contact)
+    fun onDeleteContact(contact: ContactInfo)
 
-    fun onSelectContact(contact: Contact)
+    fun onSelectContact(contact: ContactInfo)
 }

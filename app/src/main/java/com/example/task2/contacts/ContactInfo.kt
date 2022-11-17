@@ -1,6 +1,6 @@
 package com.example.task2.contacts
 
-data class Contact(
+data class ContactInfo(
     var id: Int,
     val name: String,
     val photoUri: String,
