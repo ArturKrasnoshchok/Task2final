@@ -32,6 +32,7 @@ class SimpleDialogFragment : DialogFragment() {
         }
     }
 
+    // todo handle result listener from dialog in activity
     private fun addContacts() {
         (activity as ContactsActivity).addUser(
             UserEntity(

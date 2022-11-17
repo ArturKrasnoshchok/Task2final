@@ -19,10 +19,6 @@ class UserDataBase {
         return users.add(user)
     }
 
-    fun addFakeUser() {
-        users.add(fakeUsers().random().copy(id = users.last().id + 1))
-    }
-
     private fun fakeUsers(): List<UserEntity> {
 
         return listOf(

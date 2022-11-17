@@ -1,4 +1,4 @@
-package com.example.task2.contacts.list
+package com.example.task2.contacts.recycler
 
 import com.example.task2.contacts.Contact
 
