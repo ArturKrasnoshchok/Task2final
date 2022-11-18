@@ -6,16 +6,28 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.task2.R
-import com.example.task2.contacts.list.ContactActionListener
+import com.example.task2.contacts.recycler.ContactActionListener
+import com.example.task2.contacts.recycler.RecyclerContactsAdapter
 import com.example.task2.databinding.ActivityMainBinding
 import com.example.task2.storage.models.UserEntity
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
-class ContactsActivity : AppCompatActivity(), ContactActionListener {
+class ContactsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: RecyclerContactsAdapter
+
+    private val recyclerContactsAdapter: RecyclerContactsAdapter by lazy {
+        RecyclerContactsAdapter(actionListener = object : ContactActionListener {
+            override fun onDeleteContact(contact: Contact) {
+                viewModel.askToRemoveContact(contact)
+            }
+
+            override fun onSelectContact(contact: Contact) {
+                viewModel.selectContact(contact)
+            }
+        })
+    }
 
     private val viewModel: ContactsViewModel by viewModels { ContactsViewModelFactory() }
 
@@ -24,22 +36,17 @@ class ContactsActivity : AppCompatActivity(), ContactActionListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val layoutManager = LinearLayoutManager(this)
-        adapter = RecyclerContactsAdapter(this)
-        binding.recyclerViewMyContacts.layoutManager = layoutManager
-        binding.recyclerViewMyContacts.adapter = adapter
+        setObservers()
+        initListeners()
 
-        binding.tvAddContactsMyContacts.setOnClickListener {
-            viewModel.addFakeContact()
+        binding.recyclerViewMyContacts.apply {
+            layoutManager = LinearLayoutManager(this@ContactsActivity)
+            adapter = recyclerContactsAdapter
         }
 
-        viewModel.contacts.observe(this, adapter.differ::submitList)
+    }
 
-        viewModel.removeContactBanner.observe(this) { contact ->
-            if (contact != null) {
-                showRemoveContactConfirmation(contact)
-            }
-        }
+    private fun initListeners() {
         binding.tvAddContactsMyContacts.setOnClickListener {
             SimpleDialogFragment().apply {
                 show(
@@ -50,9 +57,23 @@ class ContactsActivity : AppCompatActivity(), ContactActionListener {
         }
     }
 
+    private fun setObservers() {
+        viewModel.contacts.observe(this, recyclerContactsAdapter.differ::submitList)
+
+        viewModel.contactToRemove.observe(this) { contact ->
+            if (contact != null) {
+                showRemoveContactConfirmation(contact)
+            }
+        }
+    }
+
     private fun showRemoveContactConfirmation(contact: Contact) {
         var isCancelled = false
-        Snackbar.make(binding.coordinator, getString(R.string.Remove_contact), Snackbar.LENGTH_SHORT)
+        Snackbar.make(
+            binding.coordinator,
+            getString(R.string.Remove_contact),
+            Snackbar.LENGTH_SHORT
+        )
             .apply {
                 setAction(getString(R.string.cancel)) {
                     isCancelled = true
@@ -79,14 +100,6 @@ class ContactsActivity : AppCompatActivity(), ContactActionListener {
 
     fun addUser(user: UserEntity) {
         viewModel.addContact(user)
-    }
-
-    override fun onDeleteContact(contact: Contact) {
-        viewModel.askToRemoveContact(contact)
-    }
-
-    override fun onSelectContact(contact: Contact) {
-        viewModel.selectContact(contact)
     }
 
     fun getLastId(): Int {

@@ -6,13 +6,14 @@ import androidx.lifecycle.ViewModel
 import com.example.task2.storage.UserDataBase
 import com.example.task2.storage.models.UserEntity
 
+// use koin or Hilt for injecting dependencies 👇
 class ContactsViewModel(
     private val userDataBase: UserDataBase,
     private val mapper: UserToContactMapper,
 ) : ViewModel() {
 
-    private val _showRemoveContactConfirmation = MutableLiveData<Contact?>()
-    val removeContactBanner: LiveData<Contact?> = _showRemoveContactConfirmation
+    private val _contactToRemove = MutableLiveData<Contact?>()
+    val contactToRemove: LiveData<Contact?> = _contactToRemove
 
     private val _contacts = MutableLiveData<List<Contact>>()
     val contacts: LiveData<List<Contact>> = _contacts
@@ -37,7 +38,7 @@ class ContactsViewModel(
     }
 
     fun askToRemoveContact(contact: Contact) {
-        _showRemoveContactConfirmation.value = contact
+        _contactToRemove.value = contact
         _contacts.value = _contacts.value?.toMutableList()?.apply { remove(contact) }
     }
 
@@ -48,11 +49,6 @@ class ContactsViewModel(
 
     fun removeContact(contact: Contact) {
         userDataBase.deleteUser(contact.id)
-    }
-
-    fun addFakeContact() {
-        userDataBase.addFakeUser()
-        loadContacts()
     }
 
     private fun loadContacts() {
