@@ -1,6 +1,4 @@
-package com.example.task2.contacts
-
-import com.example.task2.storage.models.UserEntity
+package com.example.task2.storage.models
 
 class UserToContactMapper {
 

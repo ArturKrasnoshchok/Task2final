@@ -1,31 +1,23 @@
 package com.example.task2.contacts.recycler
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task2.R
-import com.example.task2.contacts.Contact
 import com.example.task2.databinding.ItemContactBinding
 import com.example.task2.extension.loadCirclePicture
+import com.example.task2.storage.models.Contact
+import com.example.task2.util.UserContactsDiffUtil
 
 
-// todo use ListAdapter<> instead of RecyclerView.Adapter<>
 class RecyclerContactsAdapter(
     private val actionListener: ContactActionListener,
-) : RecyclerView.Adapter<RecyclerContactsAdapter.RecyclerContactsHolder>() {
+) : ListAdapter<Contact, RecyclerContactsAdapter.RecyclerContactsHolder>(UserContactsDiffUtil) {
 
-    private val differCallback = object : DiffUtil.ItemCallback<Contact>() {
-        override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-            return ((oldItem.id == newItem.id) && oldItem.name == newItem.name)
-        }
-
-        override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-            return oldItem == newItem
-        }
-    }
-    val differ = AsyncListDiffer(this, differCallback)
+    val differ = AsyncListDiffer(this, UserContactsDiffUtil)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerContactsHolder {
         return RecyclerContactsHolder(

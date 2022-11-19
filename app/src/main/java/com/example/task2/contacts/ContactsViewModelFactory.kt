@@ -3,6 +3,7 @@ package com.example.task2.contacts
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.task2.storage.UserDataBase
+import com.example.task2.storage.models.UserToContactMapper
 
 class ContactsViewModelFactory : ViewModelProvider.Factory {
 

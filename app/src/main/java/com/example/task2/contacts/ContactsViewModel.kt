@@ -4,9 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.task2.storage.UserDataBase
+import com.example.task2.storage.models.Contact
 import com.example.task2.storage.models.UserEntity
+import com.example.task2.storage.models.UserToContactMapper
 
-// use koin or Hilt for injecting dependencies 👇
+
+// TODO: use koin or Hilt for injecting dependencies 👇
+//I will implement when there are ideas on how to do it
 class ContactsViewModel(
     private val userDataBase: UserDataBase,
     private val mapper: UserToContactMapper,

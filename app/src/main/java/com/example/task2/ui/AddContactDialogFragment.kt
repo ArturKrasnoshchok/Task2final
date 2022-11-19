@@ -1,4 +1,4 @@
-package com.example.task2.contacts
+package com.example.task2.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,11 @@ import androidx.fragment.app.DialogFragment
 import com.example.task2.databinding.AddContactBinding
 import com.example.task2.storage.models.UserEntity
 
-class SimpleDialogFragment : DialogFragment() {
+class AddContactDialogFragment : DialogFragment() {
     private lateinit var binding: AddContactBinding
 
-
     companion object {
-        val TAG: String = SimpleDialogFragment::class.java.simpleName
-
+        val TAG: String = AddContactDialogFragment::class.java.simpleName
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -32,7 +30,6 @@ class SimpleDialogFragment : DialogFragment() {
         }
     }
 
-    // todo handle result listener from dialog in activity
     private fun addContacts() {
         (activity as ContactsActivity).addUser(
             UserEntity(

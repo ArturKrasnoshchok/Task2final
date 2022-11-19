@@ -1,4 +1,4 @@
-package com.example.task2.contacts
+package com.example.task2.storage.models
 
 data class Contact(
     var id: Int,

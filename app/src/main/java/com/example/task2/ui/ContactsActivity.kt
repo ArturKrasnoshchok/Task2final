@@ -1,4 +1,4 @@
-package com.example.task2.contacts
+package com.example.task2.ui
 
 import android.os.Bundle
 import android.widget.Toast
@@ -6,9 +6,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.task2.R
+import com.example.task2.contacts.ContactsViewModel
+import com.example.task2.contacts.ContactsViewModelFactory
 import com.example.task2.contacts.recycler.ContactActionListener
 import com.example.task2.contacts.recycler.RecyclerContactsAdapter
 import com.example.task2.databinding.ActivityMainBinding
+import com.example.task2.storage.models.Contact
 import com.example.task2.storage.models.UserEntity
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -48,10 +51,10 @@ class ContactsActivity : AppCompatActivity() {
 
     private fun initListeners() {
         binding.tvAddContactsMyContacts.setOnClickListener {
-            SimpleDialogFragment().apply {
+            AddContactDialogFragment().apply {
                 show(
                     supportFragmentManager,
-                    SimpleDialogFragment.TAG
+                    AddContactDialogFragment.TAG
                 )
             }
         }
