@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentContacts">
+
+    <fragment
+        android:id="@+id/fragmentContacts"
+        android:name="com.example.task2.ui.fragments.FragmentContacts"
+        android:label="fragment_contacts"
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_fragmentContacts_to_fragmentProfile"
+            app:destination="@id/fragmentProfile" />
+        <action
+            android:id="@+id/action_fragmentContacts_to_addContactDialogFragment"
+            app:destination="@id/addContactDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/addContactDialogFragment"
+        android:name="com.example.task2.ui.AddContactDialogFragment"
+        android:label="add_contact"
+        tools:layout="@layout/add_contact" >
+        <action
+            android:id="@+id/action_addContactDialogFragment_to_fragmentContacts"
+            app:destination="@id/fragmentContacts" />
+    </dialog>
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.example.task2.ui.fragments.FragmentProfile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragmentProfile_to_fragmentContacts"
+            app:destination="@id/fragmentContacts" />
+    </fragment>
+</navigation>
