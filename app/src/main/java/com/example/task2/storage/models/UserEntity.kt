@@ -3,6 +3,7 @@ package com.example.task2.storage.models
 /**
  * A class with user data
  */
+
 data class UserEntity(
     val id: Int,
     val name: String,
@@ -12,3 +13,5 @@ data class UserEntity(
     val address: String,
     val birthDate: String,
 )
+
+

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +25,7 @@ import com.google.android.material.snackbar.Snackbar
 class FragmentContacts : Fragment() {
     private lateinit var binding: FragmentContactsBinding
 
-    private val viewModel: ContactsViewModel by viewModels { ContactsViewModelFactory() }
+    private val viewModel: ContactsViewModel by activityViewModels { ContactsViewModelFactory() }
 
     private val recyclerContactsAdapter: RecyclerContactsAdapter by lazy {
         RecyclerContactsAdapter(actionListener = object : ContactActionListener {
@@ -40,8 +40,7 @@ class FragmentContacts : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentContactsBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
@@ -52,9 +51,9 @@ class FragmentContacts : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView: RecyclerView = binding.recyclerViewMyContacts.apply { adapter = recyclerContactsAdapter }
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-
-        setObservers()
         initListeners()
+        setObservers()
+
     }
 
     private fun initListeners() {
@@ -76,28 +75,21 @@ class FragmentContacts : Fragment() {
     private fun showRemoveContactConfirmation(contact: Contact) {
         var isCancelled = false
         Snackbar.make(
-            binding.coordinator,
-            getString(R.string.Remove_contact),
-            Snackbar.LENGTH_SHORT
-        )
-            .apply {
+            binding.coordinator, getString(R.string.Remove_contact), Snackbar.LENGTH_SHORT
+        ).apply {
                 setAction(getString(R.string.cancel)) {
                     isCancelled = true
                     viewModel.undoRemoveContact()
                     showToast(getString(R.string.cancelled))
                     dismiss()
                 }
-            }
-            .addCallback(
-                object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
-                    override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                        if (!isCancelled) {
-                            viewModel.removeContact(contact)
-                        }
+            }.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                    if (!isCancelled) {
+                        viewModel.removeContact(contact)
                     }
                 }
-            )
-            .show()
+            }).show()
     }
 
     private fun showToast(text: String) {
@@ -111,6 +103,4 @@ class FragmentContacts : Fragment() {
     fun getLastId(): Int {
         return viewModel.getId() + 1
     }
-
-
 }

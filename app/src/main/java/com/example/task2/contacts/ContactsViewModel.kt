@@ -55,7 +55,7 @@ class ContactsViewModel(
         userDataBase.deleteUser(contact.id)
     }
 
-    private fun loadContacts() {
+     fun loadContacts() {
         _contacts.value = userDataBase.loadUsers()
             .map { mapper.map(it) }
     }
