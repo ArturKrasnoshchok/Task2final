@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task2.R
@@ -35,14 +36,15 @@ class FragmentContacts : Fragment() {
 
             override fun onSelectContact(contact: Contact) {
                 viewModel.selectContact(contact)
+                findNavController().navigate(FragmentContactsDirections.actionFragmentContactsToFragmentProfile(contact))
             }
         })
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentContactsBinding.inflate(layoutInflater)
+    ): View {
+        binding = FragmentContactsBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -59,6 +61,14 @@ class FragmentContacts : Fragment() {
     private fun initListeners() {
         binding.tvAddContactsMyContacts.setOnClickListener {
             findNavController().navigate(R.id.addContactDialogFragment)
+            navOptions {
+                anim {
+                    enter = androidx.navigation.ui.R.anim.nav_default_enter_anim
+                    popEnter = androidx.navigation.ui.R.anim.nav_default_pop_enter_anim
+                    popExit = androidx.navigation.ui.R.anim.nav_default_pop_exit_anim
+                    exit = androidx.navigation.ui.R.anim.nav_default_exit_anim
+                }
+            }
         }
     }
 
@@ -77,19 +87,19 @@ class FragmentContacts : Fragment() {
         Snackbar.make(
             binding.coordinator, getString(R.string.Remove_contact), Snackbar.LENGTH_SHORT
         ).apply {
-                setAction(getString(R.string.cancel)) {
-                    isCancelled = true
-                    viewModel.undoRemoveContact()
-                    showToast(getString(R.string.cancelled))
-                    dismiss()
+            setAction(getString(R.string.cancel)) {
+                isCancelled = true
+                viewModel.undoRemoveContact()
+                showToast(getString(R.string.cancelled))
+                dismiss()
+            }
+        }.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
+            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                if (!isCancelled) {
+                    viewModel.removeContact(contact)
                 }
-            }.addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
-                override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                    if (!isCancelled) {
-                        viewModel.removeContact(contact)
-                    }
-                }
-            }).show()
+            }
+        }).show()
     }
 
     private fun showToast(text: String) {

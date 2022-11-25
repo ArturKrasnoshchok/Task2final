@@ -11,7 +11,7 @@ import com.example.task2.contacts.ContactsViewModelFactory
 import com.example.task2.databinding.AddContactBinding
 import com.example.task2.storage.models.UserEntity
 
-class AddContactDialogFragment() : DialogFragment() {
+class AddContactDialogFragment : DialogFragment() {
     private lateinit var binding: AddContactBinding
     private val viewModel: ContactsViewModel by activityViewModels { ContactsViewModelFactory() }
 

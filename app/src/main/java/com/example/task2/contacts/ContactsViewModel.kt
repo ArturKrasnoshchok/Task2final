@@ -26,7 +26,8 @@ class ContactsViewModel(
         loadContacts()
     }
 
-    fun selectContact(contact: Contact) {
+    // TODO: дописав ретьорн, хочу вертати контакт 
+    fun selectContact(contact: Contact): Contact {
         _contacts.value = _contacts.value?.map {
             if (it.id == contact.id) {
                 it.copy(isSelected = !it.isSelected)
@@ -34,6 +35,7 @@ class ContactsViewModel(
                 it.copy(isSelected = false)
             }
         }
+        return contact
     }
 
     fun addContact(user: UserEntity) {
@@ -55,7 +57,7 @@ class ContactsViewModel(
         userDataBase.deleteUser(contact.id)
     }
 
-     fun loadContacts() {
+    private fun loadContacts() {
         _contacts.value = userDataBase.loadUsers()
             .map { mapper.map(it) }
     }
