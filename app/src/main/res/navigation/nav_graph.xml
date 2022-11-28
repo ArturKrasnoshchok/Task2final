@@ -34,7 +34,7 @@
         <action
             android:id="@+id/action_fragmentProfile_to_fragmentContacts"
             app:destination="@id/fragmentContacts" />
-        <argument android:name="UserProfile"
+        <argument android:name="userProfile"
             app:argType="com.example.task2.storage.models.Contact" />
     </fragment>
 </navigation>
