@@ -36,7 +36,7 @@ class FragmentContacts : Fragment() {
 
             override fun onSelectContact(contact: Contact) {
                 viewModel.selectContact(contact)
-                findNavController().navigate(FragmentContactsDirections.actionFragmentContactsToFragmentProfile(contact))
+                viewModel.navigateToDetails(contact)
             }
         })
     }
@@ -79,6 +79,10 @@ class FragmentContacts : Fragment() {
             if (contact != null) {
                 showRemoveContactConfirmation(contact)
             }
+        }
+
+        viewModel.navigation.observe(viewLifecycleOwner) { direction ->
+            direction.consume(findNavController()::navigate)
         }
     }
 

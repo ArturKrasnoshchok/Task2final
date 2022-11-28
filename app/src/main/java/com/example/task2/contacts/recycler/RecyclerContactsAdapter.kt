@@ -43,44 +43,37 @@ class RecyclerContactsAdapter(
         private val binding: ItemContactBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(contact: Contact) {
-            with(binding) {
-                with(contact) {
+        fun bind(contact: Contact) = with(contact) {
+            binding.root.isSelected = isSelected
+            binding.tvNameMyContacts.text = name
+            binding.tvCareerMyContacts.text = career
 
-                    root.isSelected = isSelected
-
-                    tvNameMyContacts.text = name
-                    tvCareerMyContacts.text = career
-
-                    initListeners(contact)
-
-                    bindPhoto(this)
-                }
-            }
+            initListeners(contact)
+            bindPhoto(this)
         }
 
-        private fun bindPhoto(
-            contact: Contact,
-        ) {
-            binding.imageViewPhoto.run {
-                if (contact.photoUri.isNotBlank()) {
-                    loadCirclePicture(contact.photoUri)
-                } else {
-                    setImageResource(R.drawable.ic_user_avatar)
-                }
+        private fun bindPhoto(contact: Contact) {
+            if (contact.photoUri.isNotBlank()) {
+                binding.imageViewPhoto.loadCirclePicture(
+                    image = contact.photoUri,
+                    placeholder = R.drawable.ic_user_avatar,
+                    error = R.drawable.ic_user_avatar
+                )
+            } else {
+                binding.imageViewPhoto.setImageResource(R.drawable.ic_user_avatar)
             }
         }
 
         private fun initListeners(contact: Contact) {
-            binding.run {
-                root.setOnClickListener {
-                    actionListener.onSelectContact(contact)
-                }
-                buttonBasket.setOnClickListener {
-                    actionListener.onDeleteContact(contact)
-                }
+
+            binding.root.setOnClickListener {
+                actionListener.onSelectContact(contact)
+            }
+            binding.buttonBasket.setOnClickListener {
+                actionListener.onDeleteContact(contact)
             }
         }
     }
-
 }
+
+

@@ -22,12 +22,12 @@ class FragmentProfile : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-           return binding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-      initialize()
+        initialize()
     }
 
     private fun initialize() {

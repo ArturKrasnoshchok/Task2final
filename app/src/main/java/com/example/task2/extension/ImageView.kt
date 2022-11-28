@@ -8,13 +8,13 @@ import com.example.task2.R
 
 fun ImageView.loadCirclePicture(
     image: String,
-    @DrawableRes placeholder: Int? = null,
-    @DrawableRes error: Int? = null
+    @DrawableRes placeholder: Int,
+    @DrawableRes error: Int
 ) {
     Glide.with(context)
         .load(image)
         .circleCrop()
-        .placeholder(R.drawable.ic_user_avatar)
-        .error(R.drawable.ic_user_avatar)
+        .placeholder(placeholder)
+        .error(error)
         .into(this)
 }

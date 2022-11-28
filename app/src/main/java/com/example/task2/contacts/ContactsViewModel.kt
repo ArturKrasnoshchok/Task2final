@@ -3,10 +3,13 @@ package com.example.task2.contacts
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavDirections
+import com.example.task2.extension.OneTimeEvent
 import com.example.task2.storage.UserDataBase
 import com.example.task2.storage.models.Contact
 import com.example.task2.storage.models.UserEntity
 import com.example.task2.storage.models.UserToContactMapper
+import com.example.task2.ui.fragments.FragmentContactsDirections
 
 
 // TODO: use koin or Hilt for injecting dependencies 👇
@@ -22,12 +25,15 @@ class ContactsViewModel(
     private val _contacts = MutableLiveData<List<Contact>>()
     val contacts: LiveData<List<Contact>> = _contacts
 
+    private val _navigation = MutableLiveData<OneTimeEvent<NavDirections>>()
+    val navigation: LiveData<OneTimeEvent<NavDirections>> = _navigation
+
     init {
         loadContacts()
+
     }
 
-    // TODO: дописав ретьорн, хочу вертати контакт 
-    fun selectContact(contact: Contact): Contact {
+    fun selectContact(contact: Contact) {
         _contacts.value = _contacts.value?.map {
             if (it.id == contact.id) {
                 it.copy(isSelected = !it.isSelected)
@@ -35,7 +41,11 @@ class ContactsViewModel(
                 it.copy(isSelected = false)
             }
         }
-        return contact
+    }
+
+    fun navigateToDetails(contact: Contact) {
+        _navigation.value = OneTimeEvent(FragmentContactsDirections.actionFragmentContactsToFragmentProfile(contact))
+
     }
 
     fun addContact(user: UserEntity) {
