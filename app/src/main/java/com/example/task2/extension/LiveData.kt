@@ -3,7 +3,6 @@ package com.example.task2.extension
 
 import java.util.concurrent.atomic.AtomicBoolean
 
-
 class OneTimeEvent<T>(
     private val value: T
 ) {

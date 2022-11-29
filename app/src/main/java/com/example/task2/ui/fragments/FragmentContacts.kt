@@ -55,7 +55,6 @@ class FragmentContacts : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         initListeners()
         setObservers()
-
     }
 
     private fun initListeners() {

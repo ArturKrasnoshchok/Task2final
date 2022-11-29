@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.task2.R
 import com.example.task2.databinding.FragmentProfileBinding
 
-
 class FragmentProfile : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private val args: FragmentProfileArgs by navArgs()
@@ -20,7 +19,6 @@ class FragmentProfile : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -40,7 +38,5 @@ class FragmentProfile : Fragment() {
             tvUserProfession.text = contact.career
             tvUserAddress.text = contact.address
         }
-
     }
-
 }

@@ -2,7 +2,6 @@ package com.example.task2.storage
 
 import com.example.task2.storage.models.UserEntity
 
-
 class UserDataBase {
 
     private val users = fakeUsers().toMutableList()

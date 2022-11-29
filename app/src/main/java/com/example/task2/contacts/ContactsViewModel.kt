@@ -45,7 +45,6 @@ class ContactsViewModel(
 
     fun navigateToDetails(contact: Contact) {
         _navigation.value = OneTimeEvent(FragmentContactsDirections.actionFragmentContactsToFragmentProfile(contact))
-
     }
 
     fun addContact(user: UserEntity) {
@@ -59,6 +58,7 @@ class ContactsViewModel(
     }
 
     fun getUser(direction: Int) = _contacts.value?.get(direction)
+
     fun undoRemoveContact() {
         loadContacts()
     }
