@@ -9,7 +9,7 @@ import com.example.task2.storage.UserDataBase
 import com.example.task2.storage.models.Contact
 import com.example.task2.storage.models.UserEntity
 import com.example.task2.storage.models.UserToContactMapper
-import com.example.task2.ui.fragments.FragmentContactsDirections
+import com.example.task2.ui.FragmentContactsDirections
 
 
 // TODO: use koin or Hilt for injecting dependencies 👇

@@ -3,7 +3,7 @@ package com.example.task2.storage
 import com.example.task2.storage.models.UserEntity
 
 class UserDataBase {
-
+val b:String=""
     private val users = fakeUsers().toMutableList()
 
     fun loadUsers(): List<UserEntity> {
