@@ -4,7 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.example.task2.R
 import com.example.task2.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 class ContactsActivity : AppCompatActivity() {
     /**
@@ -13,6 +18,7 @@ class ContactsActivity : AppCompatActivity() {
     companion object {
         private const val FIRST_NAME_ARG = "FIRST_NAME_ARG"
         private const val LAST_NAME_ARG = "LAST_NAME_ARG"
+
 
         fun getIntent(context: Context, firstName: String, lasName: String): Intent {
             return Intent(context, ContactsActivity::class.java).apply {
@@ -33,5 +39,24 @@ class ContactsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.tanLayoutMain.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+
+                if (tab?.position == 1)
+                    findNavController(R.id.fragmentContainerView).navigate(R.id.fragmentContacts)
+                if (tab?.position == 0)
+                    findNavController(R.id.fragmentContainerView).navigate(R.id.fragmentOwnerProfile)
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+        })
     }
+
 }
