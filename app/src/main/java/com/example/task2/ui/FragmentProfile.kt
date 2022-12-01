@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.task2.R
 import com.example.task2.databinding.FragmentProfileBinding
+import com.example.task2.extension.loadCirclePicture
 
 class FragmentProfile : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -37,6 +38,7 @@ class FragmentProfile : Fragment() {
             tvUserName.text = contact.name
             tvUserProfession.text = contact.career
             tvUserAddress.text = contact.address
+            ivAvatar.loadCirclePicture(contact.photoUri, R.drawable.ic_user_avatar, R.drawable.ic_user_avatar)
         }
     }
 }

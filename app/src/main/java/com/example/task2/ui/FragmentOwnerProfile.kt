@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.task2.R
 import com.example.task2.databinding.FragmentOwnerProfileBinding
 import com.example.task2.extension.loadCirclePicture
@@ -31,6 +32,7 @@ class FragmentOwnerProfile : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUserProfile()
+        binding.buttonViewContacts.setOnClickListener { moveToMyContacts() }
     }
 
     private fun setUserProfile() {
@@ -46,5 +48,9 @@ class FragmentOwnerProfile : Fragment() {
             placeholder = R.drawable.ic_user_avatar,
             error = R.drawable.ic_user_avatar
         )
+    }
+
+    private fun moveToMyContacts() {
+        findNavController().navigate(R.id.fragmentContacts)
     }
 }
