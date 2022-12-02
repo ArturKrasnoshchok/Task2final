@@ -5,13 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.ListFragment
 import androidx.navigation.findNavController
 import com.example.task2.R
+import com.example.task2.contacts.recycler.AdapterContactsActivity
 import com.example.task2.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ContactsActivity : AppCompatActivity() {
+
     /**
      * Expand the intent with 2 additional parameters: firstname and lastname
      */
@@ -28,6 +32,7 @@ class ContactsActivity : AppCompatActivity() {
         }
     }
 
+
     private val firstName: String
         get() = intent.getStringExtra(FIRST_NAME_ARG)!!
     private val lastName: String
@@ -39,24 +44,32 @@ class ContactsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.tanLayoutMain.addOnTabSelectedListener(object : OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-
-                if (tab?.position == 1)
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.fragmentContacts)
-                if (tab?.position == 0)
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.fragmentOwnerProfile)
-
+        val adapter = AdapterContactsActivity(this)
+        binding.fragmentContainerView.adapter = adapter
+        TabLayoutMediator(binding.tanLayoutMain, binding.fragmentContainerView) { tab, position ->
+            when (position) {
+                0 -> tab.text = "My profile"
+                1 -> tab.text = "My contacts"
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-        })
+        }.attach()
+//        binding.tanLayoutMain.addOnTabSelectedListener(object : OnTabSelectedListener {
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//
+//                if (tab?.position == 0)
+//                    findNavController(R.id.fragmentContainerView).navigate(R.id.fragmentOwnerProfile)
+//
+//                if (tab?.position == 1)
+//                    findNavController(R.id.fragmentContainerView).navigate(R.id.fragmentContacts)
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//
+//            }
+//        })
     }
 
 }

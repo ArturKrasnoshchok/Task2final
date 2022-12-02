@@ -41,4 +41,5 @@ class FragmentProfile : Fragment() {
             ivAvatar.loadCirclePicture(contact.photoUri, R.drawable.ic_user_avatar, R.drawable.ic_user_avatar)
         }
     }
+
 }

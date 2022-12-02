@@ -53,4 +53,5 @@ class FragmentOwnerProfile : Fragment() {
     private fun moveToMyContacts() {
         findNavController().navigate(R.id.fragmentContacts)
     }
+
 }

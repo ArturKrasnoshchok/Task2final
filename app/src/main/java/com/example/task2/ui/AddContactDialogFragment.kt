@@ -10,6 +10,7 @@ import com.example.task2.contacts.ContactsViewModel
 import com.example.task2.contacts.ContactsViewModelFactory
 import com.example.task2.databinding.AddContactBinding
 import com.example.task2.storage.models.UserEntity
+import com.google.android.material.tabs.TabLayoutMediator
 
 class AddContactDialogFragment : DialogFragment() {
     private lateinit var binding: AddContactBinding
@@ -31,6 +32,7 @@ class AddContactDialogFragment : DialogFragment() {
         binding.textSave.setOnClickListener {
             addContacts()
             dismiss()
+
         }
     }
 
