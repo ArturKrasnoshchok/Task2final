@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.task2.R
+import com.example.task2.contacts.ContactsViewModel
+import com.example.task2.contacts.ContactsViewModelFactory
 import com.example.task2.databinding.FragmentProfileBinding
 import com.example.task2.extension.loadCirclePicture
 
@@ -31,7 +34,7 @@ class FragmentProfile : Fragment() {
 
     private fun initialize() {
         binding.buttonArrowLeftProfile.setOnClickListener {
-            findNavController().navigate(R.id.fragmentContacts)
+            findNavController().navigate(R.id.fragmentBase)
         }
         val contact = args.userProfile
         with(binding) {

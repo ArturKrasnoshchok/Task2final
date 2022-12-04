@@ -44,6 +44,7 @@ class ContactsViewModel(
     }
 
     fun navigateToDetails(contact: Contact) {
+
         _navigation.value = OneTimeEvent(FragmentContactsDirections.actionFragmentContactsToFragmentProfile(contact))
     }
 

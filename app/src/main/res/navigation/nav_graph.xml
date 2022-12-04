@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentOwnerProfile">
+    app:startDestination="@id/fragmentBase">
 
     <fragment
         android:id="@+id/fragmentContacts"
@@ -34,11 +34,11 @@
         android:name="com.example.task2.ui.FragmentProfile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_fragmentProfile_to_fragmentContacts"
-            app:destination="@id/fragmentContacts" />
         <argument android:name="userProfile"
             app:argType="com.example.task2.storage.models.Contact" />
+        <action
+            android:id="@+id/action_fragmentProfile_to_fragmentBase2"
+            app:destination="@id/fragmentBase" />
     </fragment>
     <fragment
         android:id="@+id/fragmentOwnerProfile"
@@ -48,5 +48,19 @@
         <action
             android:id="@+id/action_fragmentOwnerProfile_to_fragmentContacts"
             app:destination="@id/fragmentContacts" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBase"
+        android:name="com.example.task2.ui.FragmentBase"
+        android:label="FragmentBase" >
+        <action
+            android:id="@+id/action_fragmentBase2_to_fragmentOwnerProfile"
+            app:destination="@id/fragmentOwnerProfile" />
+        <action
+            android:id="@+id/action_fragmentBase2_to_fragmentContacts"
+            app:destination="@id/fragmentContacts" />
+        <action
+            android:id="@+id/action_fragmentBase2_to_fragmentProfile"
+            app:destination="@id/fragmentProfile" />
     </fragment>
 </navigation>

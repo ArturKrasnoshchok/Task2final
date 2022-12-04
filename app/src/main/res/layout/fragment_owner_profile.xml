@@ -172,7 +172,7 @@
             android:layout_marginStart="@dimen/margin_large"
             android:layout_marginEnd="@dimen/margin_large"
             android:layout_marginBottom="@dimen/margin_large"
-            android:backgroundTint="@color/orange"
+            android:background="@drawable/rect_orange"
             android:text="@string/view_my_contacts_text"
             android:textAllCaps="true"
             android:textColor="@color/white"
