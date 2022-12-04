@@ -34,7 +34,7 @@ class FragmentProfile : Fragment() {
 
     private fun initialize() {
         binding.buttonArrowLeftProfile.setOnClickListener {
-            findNavController().navigate(R.id.fragmentBase)
+            findNavController().navigateUp()
         }
         val contact = args.userProfile
         with(binding) {

@@ -37,8 +37,6 @@ class FragmentContacts : Fragment() {
             override fun onSelectContact(contact: Contact) {
                 viewModel.selectContact(contact)
                 viewModel.navigateToDetails(contact)
-
-
             }
         })
     }
@@ -57,6 +55,7 @@ class FragmentContacts : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         initListeners()
         setObservers()
+
 
     }
 

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.task2.R
 import com.example.task2.contacts.ContactsViewModel
 import com.example.task2.contacts.ContactsViewModelFactory
 import com.example.task2.databinding.AddContactBinding
@@ -28,7 +30,7 @@ class AddContactDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btLeftAddOneContact.setOnClickListener { dismiss() }
+        binding.btLeftAddOneContact.setOnClickListener { findNavController().navigateUp() }
         binding.textSave.setOnClickListener {
             addContacts()
             dismiss()

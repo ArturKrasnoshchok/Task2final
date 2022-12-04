@@ -17,26 +17,31 @@
                             <option name="y" value="432" />
                           </Point>
                         </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="fragmentBase">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="79" />
+                            <option name="y" value="-427" />
+                          </Point>
+                        </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_addContactDialogFragment_to_fragmentContacts">
+                            <entry key="action_fragmentBase2_to_fragmentProfile">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_fragmentContacts_to_fragmentProfile">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="fragmentBase2">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-275" />
-                            <option name="y" value="-379" />
-                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -53,11 +58,6 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_fragmentContacts_to_addContactDialogFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_fragmentContacts_to_fragmentOwnerProfile">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -98,13 +98,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="292" />
-                            <option name="y" value="12" />
+                            <option name="x" value="523" />
+                            <option name="y" value="-302" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_fragmentProfile_to_fragmentContacts">
+                            <entry key="action_fragmentProfile_to_fragmentBase2">
                               <value>
                                 <LayoutPositions />
                               </value>

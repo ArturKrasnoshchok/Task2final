@@ -14,6 +14,7 @@ import com.example.task2.databinding.FragmentBaseBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class FragmentBase : Fragment() {
+
     private lateinit var binding: FragmentBaseBinding
      override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,6 @@ class FragmentBase : Fragment() {
                 1 -> tab.text = "My contacts"
             }
         }.attach()
-
     }
 
 }
