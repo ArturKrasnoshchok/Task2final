@@ -12,7 +12,7 @@ data class Contact(
     val email: String,
     val address: String,
     val birthDate: String,
-    val isSelected: Boolean,
+    var isSelected: Boolean,
 ):Parcelable
 
 

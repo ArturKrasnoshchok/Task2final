@@ -5,19 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.task2.R
-import com.example.task2.contacts.ContactsViewModel
-import com.example.task2.contacts.ContactsViewModelFactory
 import com.example.task2.databinding.FragmentProfileBinding
 import com.example.task2.extension.loadCirclePicture
 
 class FragmentProfile : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private val args: FragmentProfileArgs by navArgs()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,5 +40,4 @@ class FragmentProfile : Fragment() {
             ivAvatar.loadCirclePicture(contact.photoUri, R.drawable.ic_user_avatar, R.drawable.ic_user_avatar)
         }
     }
-
 }

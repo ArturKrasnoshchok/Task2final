@@ -10,6 +10,8 @@ import com.example.task2.storage.models.Contact
 import com.example.task2.storage.models.UserEntity
 import com.example.task2.storage.models.UserToContactMapper
 import com.example.task2.ui.FragmentContactsDirections
+import com.example.task2.util.ContactSelector
+import com.example.task2.util.selectedManyContacts
 
 
 // TODO: use koin or Hilt for injecting dependencies 👇
@@ -17,7 +19,7 @@ import com.example.task2.ui.FragmentContactsDirections
 class ContactsViewModel(
     private val userDataBase: UserDataBase,
     private val mapper: UserToContactMapper,
-) : ViewModel() {
+) : ViewModel(), ContactSelector {
 
     private val _contactToRemove = MutableLiveData<Contact?>()
     val contactToRemove: LiveData<Contact?> = _contactToRemove
@@ -30,7 +32,6 @@ class ContactsViewModel(
 
     init {
         loadContacts()
-
     }
 
     fun selectContact(contact: Contact) {
@@ -38,13 +39,28 @@ class ContactsViewModel(
             if (it.id == contact.id) {
                 it.copy(isSelected = !it.isSelected)
             } else {
-                it.copy(isSelected = false)
+                it.copy(isSelected = it.isSelected)
             }
         }
     }
 
-    fun navigateToDetails(contact: Contact) {
+    private fun getContactList(): MutableList<Contact> {
+        return _contacts.value!!.toMutableList()
+    }
 
+    fun deleteAllSelectedContacts() {
+        selectedManyContacts = _contacts.value!!.toMutableList()
+        for (i in 0 until _contacts.value!!.size) {
+            if (selectedManyContacts[i].isSelected) {
+                removeContact(selectedManyContacts[i])
+            }
+        }
+        selectedManyContacts.clear()
+        loadContacts()
+    }
+
+
+    fun navigateToDetails(contact: Contact) {
         _navigation.value = OneTimeEvent(FragmentContactsDirections.actionFragmentContactsToFragmentProfile(contact))
     }
 
@@ -76,4 +92,19 @@ class ContactsViewModel(
     fun getId(): Int {
         return _contacts.value?.last()?.id ?: 0
     }
+
+    override fun isAnyContactSelected(): Boolean {
+        var selectedContacts = getContactList()
+        var tempCounter = 0
+
+        for (i in 0 until selectedContacts.size) {
+            if (selectedContacts[i].isSelected) {
+                tempCounter++
+            }
+        }
+        return if (tempCounter == 0) {
+            return false
+        } else true
+    }
 }
+

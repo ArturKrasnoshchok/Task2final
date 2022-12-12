@@ -75,10 +75,24 @@
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline_my_contacts"
+            app:layout_constraintVertical_bias="0.0"
             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_contact" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/button_basket_remove_all_contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/avatar_image_size_horizontal"
+            android:visibility="invisible"
+            android:layout_marginBottom="@dimen/avatar_image_size_horizontal"
+            android:background="@drawable/basket_icon_huge_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

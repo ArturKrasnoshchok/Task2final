@@ -6,9 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
-import com.example.task2.contacts.ContactsViewModel
-import com.example.task2.contacts.ContactsViewModelFactory
 import com.example.task2.contacts.recycler.AdapterContactsActivity
 import com.example.task2.databinding.FragmentBaseBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -16,7 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class FragmentBase : Fragment() {
 
     private lateinit var binding: FragmentBaseBinding
-     override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -35,5 +32,4 @@ class FragmentBase : Fragment() {
             }
         }.attach()
     }
-
 }

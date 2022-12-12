@@ -7,4 +7,6 @@ interface ContactActionListener {
     fun onDeleteContact(contact: Contact)
 
     fun onSelectContact(contact: Contact)
+
+    fun onSelectManyContacts(contact: Contact)
 }

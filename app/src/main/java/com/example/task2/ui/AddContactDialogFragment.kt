@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.task2.R
 import com.example.task2.contacts.ContactsViewModel
 import com.example.task2.contacts.ContactsViewModelFactory
 import com.example.task2.databinding.AddContactBinding
 import com.example.task2.storage.models.UserEntity
-import com.google.android.material.tabs.TabLayoutMediator
 
 class AddContactDialogFragment : DialogFragment() {
     private lateinit var binding: AddContactBinding
@@ -24,7 +22,6 @@ class AddContactDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AddContactBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -34,7 +31,6 @@ class AddContactDialogFragment : DialogFragment() {
         binding.textSave.setOnClickListener {
             addContacts()
             dismiss()
-
         }
     }
 

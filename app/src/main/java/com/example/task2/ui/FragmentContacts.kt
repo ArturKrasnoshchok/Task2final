@@ -19,11 +19,12 @@ import com.example.task2.contacts.recycler.RecyclerContactsAdapter
 import com.example.task2.databinding.FragmentContactsBinding
 import com.example.task2.storage.models.Contact
 import com.example.task2.storage.models.UserEntity
+import com.example.task2.util.ContactSelector
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 
-class FragmentContacts : Fragment() {
+class FragmentContacts : Fragment(), ContactSelector {
     private lateinit var binding: FragmentContactsBinding
 
     private val viewModel: ContactsViewModel by activityViewModels { ContactsViewModelFactory() }
@@ -35,8 +36,17 @@ class FragmentContacts : Fragment() {
             }
 
             override fun onSelectContact(contact: Contact) {
+                if (isAnyContactSelected()) {
+                    viewModel.selectContact(contact)
+                } else {
+                    viewModel.navigateToDetails(contact)
+                }
+                showBasketToDeleteSelectionContacts(isAnyContactSelected())
+            }
+
+            override fun onSelectManyContacts(contact: Contact) {
                 viewModel.selectContact(contact)
-                viewModel.navigateToDetails(contact)
+                showBasketToDeleteSelectionContacts(isAnyContactSelected())
             }
         })
     }
@@ -45,7 +55,6 @@ class FragmentContacts : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentContactsBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -55,8 +64,7 @@ class FragmentContacts : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         initListeners()
         setObservers()
-
-
+        binding.buttonBasketRemoveAllContacts.setOnClickListener { viewModel.deleteAllSelectedContacts() }
     }
 
     private fun initListeners() {
@@ -117,5 +125,17 @@ class FragmentContacts : Fragment() {
 
     fun getLastId(): Int {
         return viewModel.getId() + 1
+    }
+
+    override fun isAnyContactSelected(): Boolean {
+        return viewModel.isAnyContactSelected()
+    }
+
+    private fun showBasketToDeleteSelectionContacts(value: Boolean) {
+        if (value) {
+            binding.buttonBasketRemoveAllContacts.visibility = View.VISIBLE
+        } else {
+            binding.buttonBasketRemoveAllContacts.visibility = View.GONE
+        }
     }
 }
