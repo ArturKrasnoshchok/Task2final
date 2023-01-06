@@ -61,5 +61,6 @@ class AuthPresenter(
 
     private fun checkPassword(password: String): Boolean {
         return password.any { it.isDigit() } && password.any { it.isLetter() }
+                && (password.length < 17)
     }
 }
